@@ -1,7 +1,9 @@
 import Gameboard from '../factoryModules/Gameboard'
+import Ship from '../factoryModules/Ship'
 
 test('Generate GameBoard', () => {
-    expect(Gameboard()).toEqual([
+    const gameboard = Gameboard().fullBoard
+    expect(gameboard).toEqual([
         'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9',
         'A10', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8',
         'B9', 'B10', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7',
@@ -17,3 +19,13 @@ test('Generate GameBoard', () => {
     ])
 })
 
+test('placeship at coordinates matching ship.length', () => {
+    const ship1 = Ship(2)
+    const ship2 = Ship(5)
+    const gameboard = Gameboard()
+    gameboard.placeShip(ship1, 'A2')
+    gameboard.placeShip(ship2, 'F4')
+
+    expect(ship1.shipCoords).toEqual(['A2', 'A3'])
+    expect(ship2.shipCoords).toEqual(['F4', 'F5', 'F6', 'F7', 'F8'])
+})
