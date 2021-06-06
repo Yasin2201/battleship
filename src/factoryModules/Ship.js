@@ -1,5 +1,5 @@
-const Ship = (a) => {
-    return a
+const Ship = () => {
+
 }
 
 export default Ship
