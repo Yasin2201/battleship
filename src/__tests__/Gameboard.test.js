@@ -9,6 +9,15 @@ test('placeship at coordinates matching ship.length', () => {
     expect(ship.shipCoords).toEqual(['A2', 'A3', "A4"])
 })
 
+test('error if ship position extends board length', () => {
+    const ship = Ship(4)
+    const gameboard = Gameboard()
+
+    expect(() => {
+        gameboard.placeShip(ship, 0, 'A9');
+    }).toThrow('Ship Position OverBoard!');
+})
+
 test('Generate GameBoard', () => {
     const gameboard = Gameboard().fullBoard
     expect(gameboard).toEqual([
