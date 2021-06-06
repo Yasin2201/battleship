@@ -7,8 +7,13 @@ const Gameboard = () => {
 
     const placeShip = (ship, index, placeStart) => {
         const shipStartPos = fullBoard[index].indexOf(placeStart)
-        const shipsFullPos = fullBoard[index].slice(shipStartPos, shipStartPos + ship.length)
-        ship.shipCoords = shipsFullPos
+
+        if (shipStartPos + ship.length > 10) {
+            throw new Error("Ship Position OverBoard!");
+        } else {
+            const shipsFullPos = fullBoard[index].slice(shipStartPos, shipStartPos + ship.length)
+            ship.shipCoords = shipsFullPos
+        }
     }
 
     return { fullBoard, placeShip }
