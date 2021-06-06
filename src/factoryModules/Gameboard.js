@@ -5,7 +5,13 @@ const Gameboard = () => {
         return boardYaxis.map((Yele) => Xele + Yele)
     }).flat()
 
-    return fullBoard
+    const placeShip = (ship, placeStart) => {
+        const shipStartPos = fullBoard.indexOf(placeStart)
+        const shipsFullPos = fullBoard.slice(shipStartPos, shipStartPos + ship.length)
+        ship.shipCoords = shipsFullPos
+    }
+
+    return { fullBoard, placeShip }
 }
 
 export default Gameboard
