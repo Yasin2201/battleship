@@ -6,7 +6,11 @@ const Ship = (shipLength) => {
         shipHit.push(hitCoords)
     }
 
-    return { length, shipHit, hit }
+    const isSunk = () => {
+        return shipHit.length === shipLength ? true : false
+    }
+
+    return { length, shipHit, hit, isSunk }
 }
 
 export default Ship
