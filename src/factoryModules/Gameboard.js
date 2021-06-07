@@ -5,6 +5,8 @@ const Gameboard = () => {
         return boardYaxis.map((Yele) => Xele + Yele)
     })
 
+    const placedShips = []
+
     const placeShip = (ship, index, placeStart) => {
         const shipStartPos = fullBoard[index].indexOf(placeStart)
 
@@ -13,10 +15,16 @@ const Gameboard = () => {
         } else {
             const shipsFullPos = fullBoard[index].slice(shipStartPos, shipStartPos + ship.length)
             ship.shipCoords = shipsFullPos
+            placedShips.push(ship)
         }
     }
 
-    return { fullBoard, placeShip }
+    const receiveAttack = (attackCoords) => {
+        const foundShip = placedShips.find((ship) => ship.shipCoords.includes(attackCoords))
+        return foundShip.hit(attackCoords)
+    }
+
+    return { fullBoard, placedShips, placeShip, receiveAttack }
 }
 
 export default Gameboard
