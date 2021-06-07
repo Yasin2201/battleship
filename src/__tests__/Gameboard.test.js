@@ -22,9 +22,26 @@ test('test gameboard sends attack to correct ship', () => {
     const gameboard = Gameboard()
     const ship = Ship(4)
     gameboard.placeShip(ship, 0, 'A2')
-    gameboard.receiveAttack('A4')
+    gameboard.receiveAttack(0, 'A4')
 
     expect(ship.shipHit).toEqual(['A4'])
+})
+
+test('gameboard sends Miss to missed attack', () => {
+    const gameboard = Gameboard()
+    const ship = Ship(1)
+    gameboard.placeShip(ship, 1, 'B3')
+
+    gameboard.receiveAttack(1, 'B1')
+    gameboard.receiveAttack(1, 'B2')
+    gameboard.receiveAttack(1, 'B3') //hit
+
+    expect(gameboard.fullBoard[1]).toEqual([
+        'Miss', 'Miss', 'B3',
+        'B4', 'B5', 'B6',
+        'B7', 'B8', 'B9',
+        'B10'
+    ])
 })
 
 test('Generate GameBoard', () => {
