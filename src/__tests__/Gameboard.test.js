@@ -18,6 +18,15 @@ test('error if ship position extends board length', () => {
     }).toThrow('Ship Position OverBoard!');
 })
 
+test('test gameboard sends attack to correct ship', () => {
+    const gameboard = Gameboard()
+    const ship = Ship(4)
+    gameboard.placeShip(ship, 0, 'A2')
+    gameboard.receiveAttack('A4')
+
+    expect(ship.shipHit).toEqual(['A4'])
+})
+
 test('Generate GameBoard', () => {
     const gameboard = Gameboard().fullBoard
     expect(gameboard).toEqual([
