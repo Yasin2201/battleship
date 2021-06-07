@@ -19,9 +19,15 @@ const Gameboard = () => {
         }
     }
 
-    const receiveAttack = (attackCoords) => {
+    const receiveAttack = (index, attackCoords) => {
         const foundShip = placedShips.find((ship) => ship.shipCoords.includes(attackCoords))
-        return foundShip.hit(attackCoords)
+
+        if (foundShip === undefined) {
+            const missedTargetIndex = fullBoard[index].indexOf(attackCoords)
+            return fullBoard[index].splice(missedTargetIndex, 1, 'Miss')
+        } else {
+            return foundShip.hit(attackCoords)
+        }
     }
 
     return { fullBoard, placedShips, placeShip, receiveAttack }
