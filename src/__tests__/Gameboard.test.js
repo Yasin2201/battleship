@@ -44,6 +44,28 @@ test('gameboard sends Miss to missed attack', () => {
     ])
 })
 
+describe('Check if all placedShips are sunk or not', () => {
+    const gameboard = Gameboard()
+    const ship1 = Ship(1)
+    const ship2 = Ship(1)
+    gameboard.placeShip(ship1, 0, 'A1')
+    gameboard.placeShip(ship2, 1, 'B1')
+
+
+    test('check if all ships are NOT sunk', () => {
+        gameboard.receiveAttack(0, 'A1')
+        expect(ship1.isSunk()).toBeTruthy()
+        expect(gameboard.placedShipsSunk()).toBeFalsy()
+    })
+
+    test('check if all ships are sunk', () => {
+        gameboard.receiveAttack(0, 'B1')
+        expect(ship1.isSunk()).toBeTruthy()
+        expect(gameboard.placedShipsSunk()).toBeTruthy()
+    })
+})
+
+
 test('Generate GameBoard', () => {
     const gameboard = Gameboard().fullBoard
     expect(gameboard).toEqual([
