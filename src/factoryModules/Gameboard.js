@@ -30,7 +30,11 @@ const Gameboard = () => {
         }
     }
 
-    return { fullBoard, placedShips, placeShip, receiveAttack }
+    const placedShipsSunk = () => {
+        return placedShips.every((ship) => ship.isSunk())
+    }
+
+    return { fullBoard, placedShips, placeShip, receiveAttack, placedShipsSunk }
 }
 
 export default Gameboard
