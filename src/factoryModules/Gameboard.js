@@ -7,11 +7,25 @@ const Gameboard = () => {
 
     const placedShips = []
 
+    const checkShipPositionValid = (fullPosition) => {
+        if (fullPosition === undefined) {
+            return false
+        } else {
+            let check = placedShips.map((ship) => {
+                return fullPosition.some((position) => ship.shipCoords.includes(position))
+            })
+            return check.includes(true) ? true : false
+        }
+    }
+
     const placeShip = (ship, indexY, indexX) => {
+        const shipsFullPos = fullBoard[indexY].slice(indexX, indexX + ship.length)
+
         if (indexX + ship.length > 10) {
             throw new Error("Ship Position OverBoard!");
+        } else if (checkShipPositionValid(shipsFullPos)) {
+            throw new Error("Ship Position Already Taken!");
         } else {
-            const shipsFullPos = fullBoard[indexY].slice(indexX, indexX + ship.length)
             ship.shipCoords = shipsFullPos
             placedShips.push(ship)
         }
@@ -23,7 +37,8 @@ const Gameboard = () => {
         if (foundShip === undefined) {
             return fullBoard[indexY].splice(indexX, 1, 'Miss')
         } else {
-            return foundShip.hit(fullBoard[indexY][indexX])
+            foundShip.hit(fullBoard[indexY][indexX])
+            return fullBoard[indexY].splice(indexX, 1, 'Hit')
         }
     }
 
