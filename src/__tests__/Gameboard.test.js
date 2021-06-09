@@ -17,41 +17,58 @@ test('Generate GameBoard', () => {
     ])
 })
 
-test('placeship at coordinates matching ship.length', () => {
-    const ship = Ship(3)
-    const gameboard = Gameboard()
-    gameboard.placeShip(ship, 0, 1)
-    expect(ship.shipCoords).toEqual(['01', '02', '03'])
+describe('test ship placement and positioning', () => {
+    test('placeship at coordinates matching ship.length', () => {
+        const ship = Ship(3)
+        const gameboard = Gameboard()
+        gameboard.placeShip(ship, 0, 1)
+        expect(ship.shipCoords).toEqual(['01', '02', '03'])
+    })
+
+    test('error if ship position extends board length', () => {
+        const ship = Ship(4)
+        const gameboard = Gameboard()
+
+        expect(() => {
+            gameboard.placeShip(ship, 0, 7);
+        }).toThrow('Ship Position OverBoard!');
+    })
+
+    test('error if ship is place where another ship is', () => {
+        const gameboard = Gameboard()
+        const ship1 = Ship(3)
+        const ship2 = Ship(3)
+
+        gameboard.placeShip(ship1, 1, 1)
+
+        expect(() => {
+            gameboard.placeShip(ship2, 1, 2)
+        }).toThrow('Ship Position Already Taken!');
+
+    })
 })
 
-test('error if ship position extends board length', () => {
-    const ship = Ship(4)
-    const gameboard = Gameboard()
+describe('test ships attacks and how they are recorded', () => {
+    test('test gameboard sends attack to correct ship', () => {
+        const gameboard = Gameboard()
+        const ship = Ship(4)
+        gameboard.placeShip(ship, 0, 1)
+        gameboard.receiveAttack(0, 3)
 
-    expect(() => {
-        gameboard.placeShip(ship, 0, 7);
-    }).toThrow('Ship Position OverBoard!');
-})
+        expect(ship.shipHit).toEqual(['03'])
+    })
 
-test('test gameboard sends attack to correct ship', () => {
-    const gameboard = Gameboard()
-    const ship = Ship(4)
-    gameboard.placeShip(ship, 0, 1)
-    gameboard.receiveAttack(0, 3)
+    test('gameboard sends Miss to missed attack', () => {
+        const gameboard = Gameboard()
+        const ship = Ship(1)
+        gameboard.placeShip(ship, 1, 2)
 
-    expect(ship.shipHit).toEqual(['03'])
-})
+        gameboard.receiveAttack(1, 0)
+        gameboard.receiveAttack(1, 1)
+        gameboard.receiveAttack(1, 2) //hit
 
-test('gameboard sends Miss to missed attack', () => {
-    const gameboard = Gameboard()
-    const ship = Ship(1)
-    gameboard.placeShip(ship, 1, 2)
-
-    gameboard.receiveAttack(1, 0)
-    gameboard.receiveAttack(1, 1)
-    gameboard.receiveAttack(1, 2) //hit
-
-    expect(gameboard.fullBoard[1]).toEqual(['Miss', 'Miss', '12', '13', '14', '15', '16', '17', '18', '19'])
+        expect(gameboard.fullBoard[1]).toEqual(['Miss', 'Miss', 'Hit', '13', '14', '15', '16', '17', '18', '19'])
+    })
 })
 
 describe('Check if all placedShips are sunk or not', () => {
