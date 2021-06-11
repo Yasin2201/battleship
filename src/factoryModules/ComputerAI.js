@@ -1,6 +1,6 @@
 import Ship from '../factoryModules/Ship'
 
-const ComputerAI = (gameboard) => {
+const ComputerAI = (humanGB, compGB) => {
 
     const fleet = [Ship(5), Ship(3), Ship(2), Ship(1), Ship(1)]
 
@@ -15,14 +15,21 @@ const ComputerAI = (gameboard) => {
         let randomX = Math.floor(Math.random() * 10)
         let randomY = Math.floor(Math.random() * (10 - ship.length))
         try {
-            gameboard.placeShip(ship, randomX, randomY)
+            compGB.placeShip(ship, randomX, randomY)
         }
         catch (err) {
             autoPlaceShips(ship)
         }
     }
 
-    return { fleet, placeFleet }
+    const attackOpp = () => {
+        let availableAttacks = humanGB.fullBoard.flat().filter((coord) => coord !== 'Miss' && coord !== 'Hit')
+        let attackPos = Math.floor(Math.random() * availableAttacks.length)
+        humanGB.receiveAttack(availableAttacks[attackPos][0], availableAttacks[attackPos][1])
+        return availableAttacks[attackPos]
+    }
+
+    return { fleet, placeFleet, attackOpp }
 }
 
 
