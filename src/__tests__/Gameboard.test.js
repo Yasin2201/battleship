@@ -69,6 +69,18 @@ describe('test ships attacks and how they are recorded', () => {
 
         expect(gameboard.fullBoard[1]).toEqual(['Miss', 'Miss', 'Hit', '13', '14', '15', '16', '17', '18', '19'])
     })
+
+    test('Gameboard throws error if attack is received to already attacked position', () => {
+        const gameboard = Gameboard()
+        const ship = Ship(2)
+
+        gameboard.placeShip(ship, 1, 2)
+        gameboard.receiveAttack(1, 0)
+
+        expect(() => {
+            gameboard.receiveAttack(1, 0)
+        }).toThrow('Already Attacked Position')
+    })
 })
 
 describe('Check if all placedShips are sunk or not', () => {
