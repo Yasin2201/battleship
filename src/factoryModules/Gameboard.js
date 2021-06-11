@@ -34,7 +34,10 @@ const Gameboard = () => {
     const receiveAttack = (indexY, indexX) => {
         const foundShip = placedShips.find((ship) => ship.shipCoords.includes(fullBoard[indexY][indexX]))
 
-        if (foundShip === undefined) {
+        if (fullBoard[indexY][indexX] === 'Hit' || fullBoard[indexY][indexX] === 'Miss') {
+            throw new Error('Already Attacked Position')
+        }
+        else if (foundShip === undefined) {
             return fullBoard[indexY].splice(indexX, 1, 'Miss')
         } else {
             foundShip.hit(fullBoard[indexY][indexX])
