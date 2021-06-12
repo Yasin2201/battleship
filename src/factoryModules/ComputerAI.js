@@ -2,7 +2,7 @@ import Ship from '../factoryModules/Ship'
 
 const ComputerAI = (humanGB, compGB) => {
 
-    const fleet = [Ship(5), Ship(3), Ship(2), Ship(1), Ship(1)]
+    const fleet = [Ship(5), Ship(4), Ship(3), Ship(2), Ship(1)]
 
     const placeFleet = () => {
         fleet.map((ship) => {
