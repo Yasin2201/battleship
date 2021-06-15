@@ -1,14 +1,14 @@
 import './styles/DisplayGameboard.css'
+import uniqid from 'uniqid'
 
-const DisplayGameboard = (board) => {
-    console.log(board.board)
+const DisplayGameboard = ({ board }) => {
     return (
         < div className="gameboard" >
-            {board.board.map((boardArray) => {
+            {board.map((boardArray) => {
                 return (
                     boardArray.map((boardArea) => {
                         return (
-                            <div key={boardArea} className="boardAreaDiv">
+                            <div key={uniqid()} className="boardAreaDiv">
                                 {boardArea}
                             </div>
                         )

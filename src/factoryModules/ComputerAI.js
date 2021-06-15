@@ -6,7 +6,7 @@ const ComputerAI = (humanGB, compGB) => {
 
     const placeFleet = () => {
         fleet.map((ship) => {
-            autoPlaceShips(ship)
+            return autoPlaceShips(ship)
         })
     }
 
