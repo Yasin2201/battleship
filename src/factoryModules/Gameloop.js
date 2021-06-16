@@ -1,5 +1,6 @@
-const Gameloop = (cpu) => {
 
+const Gameloop = (cpu, humanGB) => {
+    // console.log(cpu)
     console.log(cpu.attackOpp())
 
 
