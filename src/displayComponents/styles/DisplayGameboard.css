@@ -8,3 +8,10 @@
     width: 40px;
     height: 40px;
 }
+
+.boardAreaDivPlaced {
+    border: solid 0.5px black;
+    width: 40px;
+    height: 40px;
+    background-color: green;
+}
