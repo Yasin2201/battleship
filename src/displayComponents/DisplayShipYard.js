@@ -1,26 +1,14 @@
 import './styles/DisplayShipYard.css'
+import uniqid from 'uniqid'
 
-const DisplayShipYard = () => {
-    const shipLengthData = [
-        [1, 2, 3, 4, 5],
-        [1, 2, 3, 4],
-        [1, 2, 3],
-        [1, 2],
-        [1],
-    ]
 
+const DisplayShipYard = ({ shipLenCheck, shipLenData }) => {
     return (
-        <div className='shipYard'>
-            {shipLengthData.map((ship) => {
+        <div className='shipYard' draggable='true' onMouseDown={shipLenCheck}>
+            {shipLenData.map(() => {
                 return (
-                    <div key={ship} className='ship'>
-                        {ship.map((shipSection) => {
-                            return (
-                                <div key={ship + shipSection} className='playerShipSection'>
-                                    {shipSection}
-                                </div>
-                            )
-                        })}
+                    <div key={uniqid()} className='ship'>
+                        {shipLenData.length}
                     </div>
                 )
             })}

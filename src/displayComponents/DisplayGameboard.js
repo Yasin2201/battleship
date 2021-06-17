@@ -1,10 +1,11 @@
 import './styles/DisplayGameboard.css'
 import uniqid from 'uniqid'
 
-const DisplayGameboard = ({ board, attack }) => {
+const DisplayGameboard = ({ board, attack, dropPlace }) => {
+
     return (
-        < div className="gameboard" >
-            {board.map((boardArray) => {
+        < div className="gameboard" onDragOver={(e) => e.preventDefault()} onDrop={dropPlace}>
+            {board.fullBoard.map((boardArray) => {
                 return (
                     boardArray.map((boardArea) => {
                         return (
