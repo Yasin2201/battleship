@@ -1,7 +1,7 @@
 import './styles/DisplayGameboard.css'
 import uniqid from 'uniqid'
 
-const DisplayGameboard = ({ board, attack, dropPlace }) => {
+const DisplayGameboard = ({ board, attack, dropPlace, boardOwner }) => {
     const placedShipsPositions = board.placedShips.map((ship) => ship.shipCoords).flat()
 
     function setColor(boardArea) {
@@ -9,11 +9,11 @@ const DisplayGameboard = ({ board, attack, dropPlace }) => {
             return ({ backgroundColor: "red" })
         } else if (boardArea === 'Miss') {
             return ({ backgroundColor: "blue" })
-        } else if (placedShipsPositions.includes(boardArea)) {
+        } else if (placedShipsPositions.includes(boardArea) && boardOwner === 'human') {
             return ({ backgroundColor: "green" })
         }
     }
-    console.log(board.placedShips)
+    console.log(boardOwner)
     return (
         < div className="gameboard" onDragOver={(e) => e.preventDefault()} onDrop={dropPlace}>
             {board.fullBoard.map((boardArray) => {
