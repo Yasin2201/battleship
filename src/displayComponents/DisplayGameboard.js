@@ -6,14 +6,13 @@ const DisplayGameboard = ({ board, attack, dropPlace, boardOwner }) => {
 
     function setColor(boardArea) {
         if (boardArea === 'Hit') {
-            return ({ backgroundColor: "red" })
+            return ({ backgroundColor: "#e63946" })
         } else if (boardArea === 'Miss') {
-            return ({ backgroundColor: "blue" })
+            return ({ backgroundColor: "#4361ee" })
         } else if (placedShipsPositions.includes(boardArea) && boardOwner === 'human') {
-            return ({ backgroundColor: "green" })
+            return ({ backgroundColor: "#2a9d8f" })
         }
     }
-    console.log(boardOwner)
     return (
         < div className="gameboard" onDragOver={(e) => e.preventDefault()} onDrop={dropPlace}>
             {board.fullBoard.map((boardArray) => {

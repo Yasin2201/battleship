@@ -1,3 +1,24 @@
+body {
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: rgb(233, 233, 233);
+    background-color: rgb(54, 54, 54);
+}
+
+#title {
+    font-size: 3em;
+}
+
 .activeBoards {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+button {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.3em;
+    width: 8em;
+    height: 70px;
+    align-self: center;
 }

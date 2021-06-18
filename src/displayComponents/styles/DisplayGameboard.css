@@ -1,17 +1,37 @@
 .gameboard{
     display: flex;
     flex-wrap: wrap;
-    width: 440px;
+    width: 430px;
+    margin: 10px;
 }
 .boardAreaDiv {
-    border: solid 0.5px black;
-    width: 40px;
-    height: 40px;
+    border: solid 0.5px rgb(255, 255, 255);
+    margin: 1px;
+    width: 39px;
+    height: 39px;
+    background-color: rgb(187, 245, 245);
+}
+.boardAreaDiv:hover {
+    background-color: rgb(127, 189, 189);
 }
 
 .boardAreaDivPlaced {
     border: solid 0.5px black;
     width: 40px;
     height: 40px;
-    background-color: green;
 }
+
+@media only screen and (max-width: 470px) {
+    .gameboard{
+        width: 330px;
+    }
+    .boardAreaDiv {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .boardAreaDivPlaced {
+        width: 30px;
+        height: 30px;
+    }
+  }
