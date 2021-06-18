@@ -53,6 +53,7 @@ function App() {
     } catch (err) {
       alert(err.message)
     }
+    console.log(e.target)
   }
 
   const checkGameOver = (checkHuman, checkCPU) => {
@@ -63,18 +64,22 @@ function App() {
     }
   }
 
-
+  const playAgain = () => {
+    window.location.reload();
+  }
 
   return (
     <div>
-      <h1>BattleShip</h1>
+      <h1 id="title">BattleShip</h1>
 
       {!gameOver ?
         allShipsPlaced.length < 5
           ? <div className='activeBoards'>
             <DisplayGameboard board={humanGB} dropPlace={dropPlace} boardOwner={'human'} />
-            <h2>Place Ship {shipLenData.length}: </h2>
-            <DisplayShipYard shipLenCheck={shipLenCheck} shipLenData={shipLenData} />
+            <div>
+              <h2>Place Ship {shipLenData.length}: </h2>
+              <DisplayShipYard shipLenCheck={shipLenCheck} shipLenData={shipLenData} />
+            </div>
           </div>
 
           : startGame
@@ -89,7 +94,8 @@ function App() {
               <button onClick={start}>Start Game</button>
             </div>
         : <div>
-          <h1>GAME OVER! YOU {gameOver}</h1>
+          <h1>GAME OVER! You {gameOver}</h1>
+          <button onClick={playAgain}>Play Again</button>
         </div>
       }
     </div>
