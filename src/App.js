@@ -21,7 +21,6 @@ function App() {
   const start = () => {
     setCpuGB({ ...cpuGB }, cpu.placeFleet())
     setStartGame(true)
-    console.log(cpuGB.placedShips)
   }
 
   const attack = (e) => {
@@ -50,8 +49,6 @@ function App() {
       let xCoord = parseInt(coord[1])
 
       setHumanGB({ ...humanGB }, humanGB.placeShip(Ship(shipLength), yCoord, xCoord))
-      console.log(e)
-
       setShipLenData(Array(shipLenData.length - 1).fill(1))
     } catch (err) {
       alert(err.message)
@@ -66,6 +63,8 @@ function App() {
     }
   }
 
+
+
   return (
     <div>
       <h1>BattleShip</h1>
@@ -73,19 +72,20 @@ function App() {
       {!gameOver ?
         allShipsPlaced.length < 5
           ? <div className='activeBoards'>
-            <DisplayGameboard board={humanGB} dropPlace={dropPlace} />
+            <DisplayGameboard board={humanGB} dropPlace={dropPlace} boardOwner={'human'} />
+            <h2>Place Ship {shipLenData.length}: </h2>
             <DisplayShipYard shipLenCheck={shipLenCheck} shipLenData={shipLenData} />
           </div>
 
           : startGame
 
             ? <div className='activeBoards'>
-              <DisplayGameboard board={humanGB} dropPlace={dropPlace} />
+              <DisplayGameboard board={humanGB} dropPlace={dropPlace} boardOwner={'human'} />
               <DisplayGameboard board={cpuGB} attack={attack} />
             </div>
 
             : <div className='activeBoards'>
-              <DisplayGameboard board={humanGB} dropPlace={dropPlace} />
+              <DisplayGameboard board={humanGB} dropPlace={dropPlace} boardOwner={'human'} />
               <button onClick={start}>Start Game</button>
             </div>
         : <div>

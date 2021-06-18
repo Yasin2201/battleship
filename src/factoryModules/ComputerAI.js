@@ -10,7 +10,7 @@ const ComputerAI = (humanGB, compGB) => {
         })
     }
 
-    //recursive function to re-try placing ship if error is thrown --note: could blow stack but unlikely---
+    //recursive function to re-try placing ship if error is thrown --note: could blow stack but unlikely--
     const autoPlaceShips = (ship) => {
         let randomX = Math.floor(Math.random() * 10)
         let randomY = Math.floor(Math.random() * (10 - ship.length))
