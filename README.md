@@ -1,15 +1,14 @@
 # Battleship Project
 Battleship Game - Sink all opponents ships to win!
 
+# Live Demo
+• [Battleship Game](https://yasin2201.github.io/battleship/)
+
 ## Objectives:
 • Practice TDD with Jest
 
 ## Made With: 
-• HTML
-• CSS
-• Javascript
-• React
-• Jest
+HTML • CSS • Javascript • React • Jest
 
 # Getting Started with Create React App
 
