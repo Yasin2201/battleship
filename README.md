@@ -1,3 +1,16 @@
+# Battleship Project
+Battleship Game - Sink all opponents ships to win!
+
+## Objectives:
+• Practice TDD with Jest
+
+## Made With: 
+• HTML
+• CSS
+• Javascript
+• React
+• Jest
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
