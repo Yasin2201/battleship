@@ -75,7 +75,7 @@ function App() {
       {!gameOver ?
         allShipsPlaced.length < 5
           ? <div className='activeBoards'>
-            <DisplayGameboard board={humanGB} dropPlace={dropPlace} boardOwner={'human'} />
+            <DisplayGameboard board={humanGB} dropPlace={dropPlace} boardOwner={'Player'} />
             <div>
               <h2>Place Ship {shipLenData.length}: </h2>
               <DisplayShipYard shipLenCheck={shipLenCheck} shipLenData={shipLenData} />
@@ -85,12 +85,12 @@ function App() {
           : startGame
 
             ? <div className='activeBoards'>
-              <DisplayGameboard board={humanGB} dropPlace={dropPlace} boardOwner={'human'} />
-              <DisplayGameboard board={cpuGB} attack={attack} />
+              <DisplayGameboard board={humanGB} dropPlace={dropPlace} boardOwner={'Player'} />
+              <DisplayGameboard board={cpuGB} attack={attack} boardOwner={'Computer'} />
             </div>
 
             : <div className='activeBoards'>
-              <DisplayGameboard board={humanGB} dropPlace={dropPlace} boardOwner={'human'} />
+              <DisplayGameboard board={humanGB} dropPlace={dropPlace} boardOwner={'Player'} />
               <button onClick={start}>Start Game</button>
             </div>
         : <div>
